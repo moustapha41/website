@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link rel="stylesheet" href="assets/css/styles.css">
+
+        <!-- =====BOX ICONS===== -->
+        <link href='https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css' rel='stylesheet'>
+
+        <title>Portfolio website complete</title>
+    </head>
+    <body>
+        <!--===== HEADER =====-->
+        <header class="l-header">
+            <nav class="nav bd-grid">
+                <div>
+                    <a href="#" class="nav__logo">
+                        <img src="assets/img/SOC.png" alt="Logo" class="nav__logo-img">
+                    </a>
+                </div>
+
+                <div class="nav__menu" id="nav-menu">
+                    <ul class="nav__list">
+                        <li class="nav__item"><a href="#home" class="nav__link active-link">Accueil</a></li>
+                        <li class="nav__item"><a href="#about" class="nav__link">A propos</a></li>
+                        <li class="nav__item"><a href="#skills" class="nav__link">Compétences</a></li>
+                        <li class="nav__item"><a href="#work" class="nav__link">Projet</a></li>
+                        <li class="nav__item"><a href="#contact" class="nav__link">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div class="nav__toggle" id="nav-toggle">
+                    <i class='bx bx-menu'></i>
+                </div>
+            </nav>
+        </header>
+
+        <main class="l-main">
+            <!--===== HOME =====-->
+            <section class="home bd-grid" id="home">
+                <div class="home__data">
+                    <h1 class="home__title">Bonjour,<br>je suis <span class="home__title-color">Moustapha SY</span><br>Analyste junior <br> en Cybersécurité</h1>
+
+                    <a href="#" class="button">Contact</a>
+                </div>
+
+                <div class="home__social">
+                    <a href="" class="home__social-icon"><i class='bx bxl-linkedin'></i></a>
+                    <a href="" class="home__social-icon"><i class='bx bxl-behance' ></i></a>
+                    <a href="" class="home__social-icon"><i class='bx bxl-github' ></i></a>
+                </div>
+
+                <div class="home__img">
+                    <svg class="home__blob" viewBox="0 0 479 467" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <mask id="mask0" mask-type="alpha">
+                            <path d="M9.19024 145.964C34.0253 76.5814 114.865 54.7299 184.111 29.4823C245.804 6.98884 311.86 -14.9503 370.735 14.143C431.207 44.026 467.948 107.508 477.191 174.311C485.897 237.229 454.931 294.377 416.506 344.954C373.74 401.245 326.068 462.801 255.442 466.189C179.416 469.835 111.552 422.137 65.1576 361.805C17.4835 299.81 -17.1617 219.583 9.19024 145.964Z"/>
+                        </mask>
+                        <g mask="url(#mask0)">
+                            <path d="M9.19024 145.964C34.0253 76.5814 114.865 54.7299 184.111 29.4823C245.804 6.98884 311.86 -14.9503 370.735 14.143C431.207 44.026 467.948 107.508 477.191 174.311C485.897 237.229 454.931 294.377 416.506 344.954C373.74 401.245 326.068 462.801 255.442 466.189C179.416 469.835 111.552 422.137 65.1576 361.805C17.4835 299.81 -17.1617 219.583 9.19024 145.964Z"/>
+                            <image class="home__blob-img" x="50" y="60" href="assets/img/WhatsApp_Image_2025-12-10_at_14.31.02-removebg-preview.png"/>
+                        </g>
+                    </svg>
+                </div>
+            </section>
+
+            <!--===== ABOUT =====-->
+            <section class="about section " id="about">
+                <h2 class="section-title">A propos</h2>
+
+                <div class="about__container bd-grid">
+                    <div class="about__img">
+                        <img src="assets/img/WhatsApp Image 2025-12-10 at 14.11.49.jpeg" alt="">
+                    </div>
+                    
+                    <div>
+                        <h2 class="about__subtitle">Moustapha SY</h2>
+                        <p class="about__text">Etudiant en troisième année en infrastructure , Cloud et Cybersécurité à BEM TECH. <br> Entre CTF, projets personnels et déploiements d’infrastructures complètes, je développe une expertise pratique en sécurité réseau, administration Linux, SIEM, forensic et DevSecOps. J’aime transformer des concepts complexes en solutions concrètes :
+SSO avec Keycloak, centralisation de logs avec Wazuh/ELK, environnements Docker sécurisés, analyse d’incidents, pentest d’applications…
+Mon objectif : concevoir et sécuriser des architectures fiables, tout en comprenant les attaquants pour mieux les arrêter.</p>           
+                    </div>                                   
+                </div>
+            </section>
+
+            <!--===== SKILLS =====-->
+            <section class="skills section" id="skills">
+                <h2 class="section-title">Compétences</h2>
+
+                <div class="skills__container bd-grid">          
+                    <div>
+                        <h2 class="skills__subtitle">Compétences Techniques</h2>
+                        <p class="skills__text">Voici un aperçu de mes compétences en cybersécurité et administration système :</p>
+                        
+                        <div class="skills__data">
+                            <div class="skills__names">
+                                <i class='bx bx-shield-quarter skills__icon'></i>
+                                <span class="skills__name">DevSecOps</span>
+                            </div>
+                            <div class="skills__bar skills__devsecops"></div>
+                        </div>
+                        
+                        <div class="skills__data">
+                            <div class="skills__names">
+                                <i class='bx bx-code-alt skills__icon'></i>
+                                <span class="skills__name">Développement web</span>
+                            </div>
+                            <div class="skills__bar skills__webdev"></div>
+                        </div>
+                        
+                        <div class="skills__data">
+                            <div class="skills__names">
+                                <i class='bx bx-network-chart skills__icon'></i>
+                                <span class="skills__name">Sécurité réseau</span>
+                            </div>
+                            <div class="skills__bar skills__network"></div>
+                        </div>
+                        
+                        <div class="skills__data">
+                            <div class="skills__names">
+                                <i class='bx bx-server skills__icon'></i>
+                                <span class="skills__name">Active Directory</span>
+                            </div>
+                            <div class="skills__bar skills__ad"></div>
+                            <div class="skills__description">
+                                <small>Gestion des utilisateurs, GPO, authentification centralisée</small>
+                            </div>
+                        </div>
+                        
+                        <div class="skills__data">
+                            <div class="skills__names">
+                                <i class='bx bx-bar-chart-alt-2 skills__icon'></i>
+                                <span class="skills__name">Splunk / ELK / Wazuh</span>
+                            </div>
+                            <div class="skills__bar skills__monitoring"></div>
+                        </div>
+                        
+                        <div class="skills__data">
+                            <div class="skills__names">
+                                <i class='bx bx-terminal skills__icon'></i>
+                                <span class="skills__name">Administration système (Linux)</span>
+                            </div>
+                            <div class="skills__bar skills__linux"></div>
+                        </div>
+                    </div>
+                    
+                    <div>              
+                        <img src="assets/img/work3.jpg" alt="" class="skills__img">
+                    </div>
+                </div>
+            </section>
+
+            <!--===== WORK =====-->
+            <section class="work section" id="work">
+                <h2 class="section-title">Réalisations</h2>
+
+                <div class="work__container bd-grid">
+                    <div>
+                        <a href="/home/moustapha/portfolio-responsive-complete/assets/Réalisations/Forensic1.pdf" class="work__img" title="Forensic">
+                            <img src="assets/img/work1.jpg" alt="Forensic">
+                            <p class="work__title">Forensic</p>
+                        </a>
+                    </div>
+                    <div>
+                        <a href="/home/moustapha/portfolio-responsive-complete/assets/Réalisations/chiffrement.pdf" class="work__img" title="Chiffrement">
+                            <img src="assets/img/work2.jpg" alt="Chiffrement">
+                            <p class="work__title">Chiffrement</p>
+                        </a>
+                    </div>
+                    <div>
+                        <a href="/home/moustapha/portfolio-responsive-complete/assets/Réalisations/ELK.pdf" class="work__img" title="ELK">
+                            <img src="assets/img/work3.jpg" alt="ELK">
+                            <p class="work__title">ELK</p>
+                        </a>
+                    </div>
+                    <div>
+                        <a href="/home/moustapha/portfolio-responsive-complete/assets/Réalisations/nginx.pdf" class="work__img" title="Nginx">
+                            <img src="assets/img/work4.jpg" alt="Nginx">
+                            <p class="work__title">Nginx</p>
+                        </a>
+                    </div>
+                    <div>
+                        <a href="/home/moustapha/portfolio-responsive-complete/assets/Réalisations/Campagne (sensibilisation).pdf" class="work__img" title="Phishing">
+                            <img src="assets/img/work5.jpg" alt="Phishing">
+                            <p class="work__title">Phishing</p>
+                        </a>
+                    </div>
+                    <div>
+                        <a href="/home/moustapha/portfolio-responsive-complete/assets/Réalisations/Capture vidéo du 2025-12-07 22-34-43.mp4" class="work__img" title="Site Web">
+                            <img src="assets/img/work6.jpg" alt="Site Web">
+                            <p class="work__title">Site Web</p>
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <!--===== FORMATION & CERTIFICATIONS =====-->
+            <section class="formation section" id="formation">
+                <h2 class="section-title">Formation & Certifications</h2>
+
+                <div class="formation__container bd-grid">
+                    <!-- Formation Card -->
+                    <div class="formation__card">
+                        <div class="formation__header">
+                            <i class='bx bxs-graduation formation__icon'></i>
+                            <h3 class="formation__title">Infrastructure, Cloud & Cybersécurité</h3>
+                        </div>
+                        <div class="formation__content">
+                            <p class="formation__text"><strong>BEM TECH (3ème année)</strong></p>
+                            <span class="formation__status">En cours</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Certifications Card -->
+                    <div class="formation__card">
+                        <div class="formation__header">
+                            <i class='bx bx-award formation__icon'></i>
+                            <h3 class="formation__title">Certifications</h3>
+                        </div>
+                        <div class="formation__content">
+                            <ul class="formation__list">
+                                <li class="formation__item">
+                                    <span>DevSecOps - Cybrary</span>
+                                    <button class="view-certificate" data-certificate="devsecops" data-type="pdf">Voir</button>
+                                </li>
+                                <li class="formation__item">
+                                    <span>Cisco CCNA - Junior Analyst (FORCE N)</span>
+                                    <button class="view-certificate" data-certificate="ccna" data-type="image">Voir</button>
+                                </li>
+                                <li class="formation__item">
+                                    <span>JavaScript - SoloLearn</span>
+                                    <button class="view-certificate" data-certificate="javascript" data-type="image">Voir</button>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!--===== CONTACT =====-->
+            <section class="contact section" id="contact">
+                <h2 class="section-title">Contact</h2>
+
+                <div class="contact__container bd-grid">
+                    <form action="" class="contact__form">
+                        <input type="text" placeholder="Name" class="contact__input">
+                        <input type="mail" placeholder="Email" class="contact__input">
+                        <textarea name="" id="" cols="0" rows="10" class="contact__input"></textarea>
+                        <input type="button" value="Envoyer" class="contact__button button">
+                    </form>
+                </div>
+            </section>
+        </main>
+
+        <!-- Modal pour afficher les certifications -->
+        <div class="certificate-modal" id="certificateModal">
+            <div class="certificate-modal__content">
+                <span class="certificate-modal__close">&times;</span>
+                <div class="certificate-modal__body">
+                    <img id="certificateImage" src="" alt="Certification" class="certificate-modal__image">
+                </div>
+            </div>
+        </div>
+
+        <!--===== FOOTER =====-->
+        <footer class="footer">
+            <div class="footer__logo">
+                <img src="assets/img/SOC.png" alt="Logo" class="footer__logo-img">
+            </div>
+            <div class="footer__social">
+                <a href="#" class="footer__icon"><i class='bx bxl-facebook' ></i></a>
+                <a href="https://www.linkedin.com/in/moustapha-sy-296706351/" class="footer__icon"><i class='bx bxl-linkedin' ></i></a>
+                <a href="#" class="footer__icon"><i class='bx bxl-twitter' ></i></a>
+            </div>
+            <p class="footer__copy">&#169; Codeur. All rigths reserved</p>
+        </footer>
+
+
+        <!--===== SCROLL REVEAL =====-->
+        <script src="https://unpkg.com/scrollreveal"></script>
+
+        <!--===== MAIN JS =====-->
+        <script src="assets/js/main.js"></script>
+    </body>
+</html>
