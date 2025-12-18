@@ -10,8 +10,252 @@
         <link href='https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css' rel='stylesheet'>
 
         <title>Portfolio website complete</title>
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Roboto:wght@300;400;500&display=swap');
+            
+            /* Style pour l'écran de chargement */
+            .loading-screen {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                z-index: 9999;
+                overflow: hidden;
+                font-family: 'Roboto', sans-serif;
+                color: #e0f7fa;
+                transition: opacity 1s ease-out;
+                padding: 20px;
+                box-sizing: border-box;
+            }
+            
+            .loading-screen.hidden {
+                opacity: 0;
+                pointer-events: none;
+            }
+            
+            .countdown {
+                font-size: 2.8rem;
+                color: #4fc3f7;
+                font-family: 'Share Tech Mono', monospace;
+                font-weight: 400;
+                margin: 20px 0;
+                text-shadow: 0 0 15px rgba(79, 195, 247, 0.7);
+                letter-spacing: 0.1em;
+                position: relative;
+                display: flex;
+                align-items: center;
+                gap: 5px;
+            }
+            
+            .countdown span {
+                min-width: 2ch;
+                text-align: center;
+                background: rgba(255, 255, 255, 0.05);
+                padding: 5px 10px;
+                border-radius: 4px;
+                margin: 0 2px;
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            }
+            
+            .countdown .separator {
+                background: transparent;
+                box-shadow: none;
+                padding: 0;
+            }
+            
+            .countdown .milliseconds {
+                font-size: 1.5rem;
+                color: #b3e5fc;
+                min-width: 3ch;
+            }
+            
+            @keyframes blink {
+                from, to { opacity: 1; }
+                50% { opacity: 0; }
+            }
+            
+            .loading-text {
+                color: #e1f5fe;
+                font-size: 1.2rem;
+                margin: 10px 0;
+                text-align: center;
+                font-family: 'Roboto', sans-serif;
+                font-weight: 300;
+                letter-spacing: 1px;
+                max-width: 600px;
+                line-height: 1.6;
+            }
+            
+            .terminal {
+                width: 100%;
+                max-width: 800px;
+                height: 300px;
+                background: rgba(0, 0, 0, 0.3);
+                border: 1px solid #4fc3f7;
+                border-radius: 8px;
+                padding: 20px;
+                margin: 20px 0;
+                overflow: hidden;
+                position: relative;
+                box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+                backdrop-filter: blur(8px);
+            }
+            
+            .terminal-header {
+                display: flex;
+                justify-content: space-between;
+                margin-bottom: 15px;
+                padding-bottom: 10px;
+                border-bottom: 1px solid rgba(79, 195, 247, 0.3);
+                font-size: 0.9rem;
+                color: #4fc3f7;
+                font-family: 'Share Tech Mono', monospace;
+            }
+            
+            .terminal-content {
+                height: calc(100% - 30px);
+                overflow: hidden;
+                position: relative;
+            }
+            
+            .terminal-line {
+                margin: 8px 0;
+                line-height: 1.6;
+                white-space: pre-wrap;
+                animation: fadeIn 0.5s ease-in;
+                color: #e0f7fa;
+                font-family: 'Share Tech Mono', monospace;
+                font-size: 0.95rem;
+            }
+            
+            .terminal-line:before {
+                content: '> ';
+                color: #4fc3f7;
+            }
+            
+            @keyframes fadeIn {
+                from { opacity: 0; transform: translateY(10px); }
+                to { opacity: 1; transform: translateY(0); }
+            }
+            
+            .terminal-cursor {
+                display: inline-block;
+                width: 10px;
+                height: 20px;
+                background: #00ff00;
+                margin-left: 5px;
+                animation: blink 1s step-end infinite;
+                vertical-align: middle;
+            }
+            
+            .progress-container {
+                width: 100%;
+                max-width: 500px;
+                height: 8px;
+                background: rgba(255, 255, 255, 0.1);
+                border-radius: 10px;
+                margin: 30px 0;
+                overflow: hidden;
+                position: relative;
+            }
+            
+            .progress-bar {
+                height: 100%;
+                width: 0%;
+                background: linear-gradient(90deg, #4fc3f7, #0288d1);
+                transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+                position: relative;
+                overflow: hidden;
+                border-radius: 10px;
+            }
+            
+            .progress-bar::after {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: linear-gradient(
+                    90deg,
+                    rgba(255, 255, 255, 0) 0%,
+                    rgba(255, 255, 255, 0.2) 50%,
+                    rgba(255, 255, 255, 0) 100%
+                );
+                animation: shine 2s infinite;
+            }
+            
+            @keyframes shine {
+                0% { transform: translateX(-100%); }
+                100% { transform: translateX(100%); }
+            }
+            
+            .status-message {
+                color: #b3e5fc;
+                font-size: 1rem;
+                line-height: 1.6;
+                white-space: pre-line;
+                text-align: center;
+                margin: 10px 0;
+                padding: 10px;
+                background: rgba(255, 255, 255, 0.05);
+                border-radius: 6px;
+                border-left: 3px solid #4fc3f7;
+            }
+            
+            /* Cacher le contenu principal pendant le chargement */
+            body > *:not(.loading-screen) {
+                opacity: 0;
+                transition: opacity 0.5s ease-in;
+            }
+            
+            body.loaded > *:not(.loading-screen) {
+                opacity: 1;
+            }
+        </style>
     </head>
     <body>
+        <!-- Écran de chargement style sécurisé -->
+        <div class="loading-screen" id="loadingScreen">
+            <div class="terminal">
+                <div class="terminal-header">
+                    <span>secure@portfolio:~$</span>
+                    <span>SYSTÈME DE SÉCURITÉ ACTIF</span>
+                </div>
+                <div class="terminal-content" id="terminalContent">
+                    <!-- Les lignes du terminal seront ajoutées dynamiquement par JavaScript -->
+                </div>
+            </div>
+            
+            <div class="countdown" id="countdown">
+                <span id="hours">00</span>
+                <span class="separator">:</span>
+                <span id="minutes">00</span>
+                <span class="separator">:</span>
+                <span id="seconds">00</span>
+                <span class="separator">.</span>
+                <span id="milliseconds" class="milliseconds">000</span>
+            </div>
+            
+            <div class="status-message" id="loadingStatus">Vérification des protocoles de sécurité...</div>
+            
+            <div class="progress-container">
+                <div class="progress-bar" id="progressBar"></div>
+            </div>
+            
+            <div class="loading-text" id="loadingMessage">Préparation de votre environnement sécurisé, veuillez patienter...</div>
+        </div>
+        
+        <!-- Sons -->
+        <audio id="tickSound" src="https://assets.mixkit.co/active_storage/sfx/2577/2577-preview.mp3" preload="auto"></audio>
+        <audio id="keyboardSound" src="https://assets.mixkit.co/active_storage/sfx/2345/2345-preview.mp3" preload="auto"></audio>
+        <audio id="beepSound" src="https://assets.mixkit.co/active_storage/sfx/270/270-preview.mp3" preload="auto"></audio>
         <!--===== HEADER =====-->
         <header class="l-header">
             <nav class="nav bd-grid">
@@ -271,29 +515,153 @@ Mon objectif : concevoir et sécuriser des architectures fiables, tout en compre
 
         <!--===== FOOTER =====-->
         <footer class="footer">
-            <div class="footer__logo">
-                <img src="assets/img/SOC.png" alt="Logo" class="footer__logo-img">
-            </div>
+            <p class="footer__title">Moustapha</p>
             <div class="footer__social">
                 <a href="#" class="footer__icon"><i class='bx bxl-facebook' ></i></a>
-                <a href="https://www.linkedin.com/in/moustapha-sy-296706351/" class="footer__icon"><i class='bx bxl-linkedin' ></i></a>
+                <a href="#" class="footer__icon"><i class='bx bxl-instagram' ></i></a>
                 <a href="#" class="footer__icon"><i class='bx bxl-twitter' ></i></a>
             </div>
-            <p class="footer__copy">&#169; Codeur. All rigths reserved</p>
+            <p>&#169; 2023 copyright all right reserved</p>
         </footer>
-
 
         <!--===== SCROLL REVEAL =====-->
         <script src="https://unpkg.com/scrollreveal"></script>
 
         <!--===== MAIN JS =====-->
         <script src="assets/js/main.js"></script>
+        
+        <!-- Script pour le compte à rebours -->
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const loadingScreen = document.getElementById('loadingScreen');
+                const countdownElement = document.getElementById('countdown');
+                const terminalContent = document.getElementById('terminalContent');
+                const loadingStatus = document.getElementById('loadingStatus');
+                const loadingMessage = document.getElementById('loadingMessage');
+                const progressBar = document.getElementById('progressBar');
+                
+                const tickSound = document.getElementById('tickSound');
+                const keyboardSound = document.getElementById('keyboardSound');
+                const beepSound = document.getElementById('beepSound');
+                
+                let startTime = Date.now();
+                let progress = 0;
+                let terminalLines = [
+                    "Vérification de l'intégrité du système... [OK]",
+                    "Chargement des protocoles de chiffrement... [OK]",
+                    "Vérification des mises à jour de sécurité... [A JOUR]",
+                    "Analyse des vulnérabilités... [AUCUNE MENACE DÉTECTÉE]",
+                    "Configuration du pare-feu... [ACTIVÉ]",
+                    "Vérification des certificats SSL... [VALIDE]",
+                    "Initialisation du système de détection d'intrusion... [ACTIF]",
+                    "Vérification de l'authentification à deux facteurs... [CONFIGURÉ]"
+                ];
+                
+                // Fonction pour formater le temps
+                function formatTime(ms) {
+                    const date = new Date(ms);
+                    const hours = String(date.getUTCHours()).padStart(2, '0');
+                    const minutes = String(date.getUTCMinutes()).padStart(2, '0');
+                    const seconds = String(date.getUTCSeconds()).padStart(2, '0');
+                    const milliseconds = String(date.getUTCMilliseconds()).padStart(3, '0');
+                    return { hours, minutes, seconds, milliseconds };
+                }
+                
+                // Fonction pour ajouter une ligne au terminal avec un délai
+                function addTerminalLine(line, delay) {
+                    setTimeout(() => {
+                        const lineElement = document.createElement('div');
+                        lineElement.className = 'terminal-line';
+                        lineElement.textContent = line;
+                        terminalContent.appendChild(lineElement);
+                        terminalContent.scrollTop = terminalContent.scrollHeight;
+                        
+                        // Jouer un son de frappe au clavier
+                        if (keyboardSound) {
+                            keyboardSound.currentTime = 0;
+                            keyboardSound.play().catch(e => console.log("Son de clavier non joué:", e));
+                        }
+                    }, delay);
+                }
+                
+                // Fonction pour mettre à jour le statut de chargement
+                function updateStatus(message) {
+                    loadingStatus.textContent = message;
+                }
+                
+                // Fonction pour mettre à jour le message de chargement
+                function updateMessage(message) {
+                    loadingMessage.textContent = message;
+                }
+                
+                // Fonction pour mettre à jour la barre de progression
+                function updateProgress(value) {
+                    progress = value;
+                    progressBar.style.width = `${value}%`;
+                }
+                
+                // Fonction pour mettre à jour le chronomètre
+                function updateCountdown() {
+                    const elapsed = Date.now() - startTime;
+                    const time = formatTime(elapsed);
+                    
+                    // Mettre à jour l'affichage
+                    document.getElementById('hours').textContent = time.hours;
+                    document.getElementById('minutes').textContent = time.minutes;
+                    document.getElementById('seconds').textContent = time.seconds;
+                    document.getElementById('milliseconds').textContent = time.milliseconds;
+                    
+                    // Continuer la mise à jour
+                    requestAnimationFrame(updateCountdown);
+                }
+                
+                // Démarrer l'animation du terminal
+                function startTerminalAnimation() {
+                    // Ajouter les lignes du terminal avec des délais progressifs
+                    terminalLines.forEach((line, index) => {
+                        addTerminalLine(line, index * 400);
+                    });
+                    
+                    // Mettre à jour la progression
+                    let currentProgress = 0;
+                    const progressInterval = setInterval(() => {
+                        if (currentProgress < 100) {
+                            currentProgress += 1;
+                            updateProgress(currentProgress);
+                            
+                            // Mettre à jour les messages en fonction de la progression
+                            if (currentProgress === 20) updateStatus("Analyse des protocoles de sécurité...");
+                            if (currentProgress === 40) updateStatus("Vérification des certificats...");
+                            if (currentProgress === 60) updateStatus("Configuration du chiffrement...");
+                            if (currentProgress === 80) updateStatus("Finalisation de la sécurisation...");
+                            if (currentProgress === 90) updateStatus("Préparation de votre espace...");
+                            
+                        } else {
+                            clearInterval(progressInterval);
+                            // Terminer la séquence
+                            setTimeout(() => {
+                                updateStatus("Système sécurisé et prêt");
+                                updateMessage("Votre environnement est maintenant sécurisé. Accès autorisé.");
+                                
+                                // Cacher l'écran de chargement après un court délai
+                                setTimeout(() => {
+                                    loadingScreen.classList.add('hidden');
+                                    document.body.classList.add('loaded');
+                                }, 1000);
+                            }, 500);
+                        }
+                    }, 50);
+                    
+                    // Démarrer le chronomètre
+                    updateCountdown();
+                }
+                
+                // Démarrer l'animation après un court délai
+                setTimeout(startTerminalAnimation, 500);
+            });
+        </script>
     </body>
 </html>
-<<<<<<< HEAD
-
-
-=======
 >>>>>>> 8bae747 (derniere modif)
 
 
